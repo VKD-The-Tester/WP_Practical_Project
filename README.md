@@ -1,36 +1,39 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## Project Theme Explanation
 
-## Getting Started
+### What type of theme did I choose for this project?
 
-First, run the development server:
+I selected the event manager theme that was suggested in the requirements documentation.
+
+### Why did I choose this theme?
+
+I chose this particular theme because I had a good idea on how to implement it. While the other themes seemed plausible, they also required additional features such as images and Enums which aren't difficult to learn, but will definitely require a little more time to master. Since this project has a strict deadline and a specific set of requirements, going up and beyond will not benefit me at all and given my knowledge gap, it's better if I simplify the entire process for myself.
+
+## Running the Project
+
+### Step 1 - Running the Local Server
+
+In order to run the local server, you must type the following command in the terminal:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Step 2 - Selecting the local host URL
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+After the project starts to run in development mode, make to select the following URL in the terminal:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+http://localhost:3000
 
-## Learn More
+## Main User Flow
 
-To learn more about Next.js, take a look at the following resources:
+### Home Page
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+This will be the first page that greets the main user on their journey.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Register Page
 
-## Deploy on Vercel
+If the main user doesn't have an account, they will have to create an account through the register page. In order for the user to get to the register page, they will have to click on the register navigation link, which is located in the navigation bar.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Login Page
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Once the main user registers their account, they will be redirected to the login page. From there, they simply have to provide the same email and password that they used in the register page and click on the login button.
