@@ -26,7 +26,7 @@ model Event {
   title       String
   description String?
   venue       String
-  organizer   User     @relation(fields: [userId], references: [id])
+  organizer   User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   date        DateTime
   ticketPrice Decimal
   userId      String
