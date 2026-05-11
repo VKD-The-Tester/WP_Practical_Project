@@ -1,8 +1,12 @@
 "use client";
 
+import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
+import { login } from "./actions";
 
 const LoginForm = () => {
+  const [state, loginAction] = useActionState(login, undefined);
+
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 px-4">
       <div className="w-full max-w-md rounded-2xl bg-white p-8 shadow-2x1">
@@ -13,7 +17,7 @@ const LoginForm = () => {
           </p>
         </div>
         <div>
-          <form className="space-y-5">
+          <form className="space-y-5" action={loginAction}>
             <div className="flex flex-col">
               <label
                 htmlFor="loginEmail"
@@ -28,6 +32,11 @@ const LoginForm = () => {
                 placeholder="user@example.com"
                 className="rounded-lg border border-gray-300 px-4 py-3 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
               />
+              {state?.errors?.email && (
+                <p className="mt-1 flex items-center gap-1 text-xs text-red-600">
+                  {state.errors.email}
+                </p>
+              )}
             </div>
             <div className="flex flex-col">
               <label
@@ -43,6 +52,11 @@ const LoginForm = () => {
                 placeholder="**************"
                 className="rounded-lg border border-gray-300 px-4 py-3 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
               />
+              {state?.errors?.password && (
+                <p className="mt-1 flex items-center gap-1 text-xs text-red-600">
+                  {state.errors.password}
+                </p>
+              )}
             </div>
             <div className="pt-2">
               <LoginButton />
