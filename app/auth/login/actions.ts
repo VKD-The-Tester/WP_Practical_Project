@@ -1,5 +1,9 @@
 "use server";
 
+import { comparePasswords } from "@/app/utils/password";
+import { prisma } from "@/app/utils/prisma";
+import { createSession, deleteSession } from "@/app/utils/session";
+import { redirect } from "next/navigation";
 import { z } from "zod";
 
 const loginSchema = z.object({
@@ -11,6 +15,39 @@ const loginSchema = z.object({
     .trim(),
 });
 
-const login = async () => {};
+export const login = async (prevState: any, formData: FormData) => {
+  const result = loginSchema.safeParse(Object.fromEntries(formData));
 
-const logout = async () => {};
+  if (!result.success) {
+    return { errors: z.flattenError(result.error).fieldErrors };
+  }
+
+  const { email, password } = result.data;
+
+  const user = await prisma.user.findUnique({ where: { email: email } });
+
+  if (!user) {
+    return {
+      errors: {
+        email: ["Invalid email or password"],
+      },
+    };
+  }
+
+  const isCorrectPassword = await comparePasswords(password, user.password);
+
+  if (!isCorrectPassword) {
+    return { errors: { email: ["Invalid email or password"] } };
+  }
+
+  const sessionPayload = { sub: user.id, email: user.email, name: user.name };
+
+  await createSession(sessionPayload);
+
+  redirect("/events");
+};
+
+export const logout = async () => {
+  await deleteSession();
+  redirect("/");
+};
