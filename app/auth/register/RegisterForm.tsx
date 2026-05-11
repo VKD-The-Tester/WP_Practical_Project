@@ -1,8 +1,11 @@
 "use client";
 
+import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
+import register from "./actions";
 
 const RegisterForm = () => {
+  const [state, registerAction] = useActionState(register, undefined);
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 px-4">
       <div className="w-full max-w-md rounded-2xl bg-white p-8 shadow-2x1">
@@ -13,7 +16,7 @@ const RegisterForm = () => {
           </p>
         </div>
         <div>
-          <form className="space-y-5">
+          <form className="space-y-5" action={registerAction}>
             <div className="flex flex-col">
               <label
                 htmlFor="registerName"
@@ -28,6 +31,11 @@ const RegisterForm = () => {
                 placeholder="John Doe"
                 className="rounded-lg border border-gray-300 px-4 py-3 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
               />
+              {state?.errors?.name && (
+                <p className="mt-1 flex items-center gap-1 text-xs text-red-600">
+                  {state.errors.name}
+                </p>
+              )}
             </div>
 
             <div className="flex flex-col">
@@ -44,6 +52,11 @@ const RegisterForm = () => {
                 placeholder="user@example.com"
                 className="rounded-lg border border-gray-300 px-4 py-3 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
               />
+              {state?.errors?.email && (
+                <p className="mt-1 flex items-center gap-1 text-xs text-red-600">
+                  {state.errors.email}
+                </p>
+              )}
             </div>
 
             <div className="flex flex-col">
@@ -60,6 +73,11 @@ const RegisterForm = () => {
                 placeholder="**************"
                 className="rounded-lg border border-gray-300 px-4 py-3 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
               />
+              {state?.errors?.password && (
+                <p className="mt-1 flex items-center gap-1 text-xs text-red-600">
+                  {state.errors.password}
+                </p>
+              )}
             </div>
 
             <div className="pt-2">
