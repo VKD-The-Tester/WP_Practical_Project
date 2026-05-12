@@ -7,7 +7,7 @@ import register from "./actions";
 const RegisterForm = () => {
   const [state, registerAction] = useActionState(register, undefined);
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 px-4">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 px-4 font-sans">
       <div className="w-full max-w-md rounded-2xl bg-white p-8 shadow-2x1">
         <div className="text-center mb-6">
           <h2 className="text-3xl font-bold text-gray-900 mb-2">Register</h2>
