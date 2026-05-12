@@ -7,10 +7,13 @@ const publicRoutes = ["/", "auth/login", "auth/register"];
 
 const middleware = async (request: NextRequest) => {
   const path = request.nextUrl.pathname;
-  const isProtectedRoute = protectedRoutes.some((route) =>
-    path.startsWith(route),
+
+  const isCreatedPage = path === "/events/create";
+
+  const isProtectedRoute = protectedRoutes.some(
+    (route) => path.startsWith(route) && !isCreatedPage,
   );
-  const isPublicRoute = publicRoutes.includes(path);
+  const isPublicRoute = publicRoutes.includes(path) || isCreatedPage;
 
   const cookie = request.cookies.get("session")?.value;
   const session = await decrypt(cookie);
