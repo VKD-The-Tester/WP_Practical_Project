@@ -38,7 +38,9 @@ const NavBar = async () => {
                   <button
                     type="submit"
                     className="cursor-pointer text-red-600 hover:text-red-900 px-3 py-2 rounded-md text-sm font-medium"
-                  ></button>
+                  >
+                    Logout
+                  </button>
                 </form>
               </>
             ) : (
