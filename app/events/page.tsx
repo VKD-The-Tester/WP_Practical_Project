@@ -5,10 +5,10 @@ import { Prisma } from "../generated/prisma/browser";
 const ListEventsPage = async ({
   searchParams,
 }: {
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) => {
   const { queryByTitle, queryByVenue, queryByDate, queryByTicketPrice } =
-    searchParams;
+    await searchParams;
 
   const andFilters: Prisma.EventWhereInput[] = [];
 
@@ -39,7 +39,7 @@ const ListEventsPage = async ({
   });
   return (
     <div>
-      <div className="bg-white p-6 rounded-lg shadow-md">
+      <div className="bg-white p-6 rounded-lg shadow-md font-sans">
         <h1 className="text-2xl font-bold text-gray-900 mb-6">Find Events</h1>
         <form className="grid gap-4 md:grid-cols-3">
           <input
