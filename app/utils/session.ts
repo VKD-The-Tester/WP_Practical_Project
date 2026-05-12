@@ -15,7 +15,7 @@ export const encrypt = async (payload: SessionPayload) => {
   return new SignJWT(payload)
     .setProtectedHeader({ alg: "HS512" })
     .setIssuedAt()
-    .setExpirationTime("7d")
+    .setExpirationTime("1d")
     .sign(encodedKey);
 };
 
